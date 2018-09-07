@@ -1,0 +1,20 @@
+﻿@Master['master']
+
+@Section['Content']
+<h2>
+    New post
+</h2>
+<form action="/newpost" method="post">
+    <input type="text" placeholder="Title" name="title"/>
+    <textarea id="editor1" rows="10" cols="80" name="body">
+    </textarea>
+    <button type="submit" name="submitButton">Submit</button>
+</form>
+@EndSection
+
+@Section['script']
+    CKEDITOR.replace('editor1',{
+        filebrowserUploadUrl: '/uploadimage'
+    });
+@EndSection
+

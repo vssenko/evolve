@@ -1,0 +1,28 @@
+﻿@Master['master']
+
+@Section['Content']
+    <h2>Log in</h2>
+@IfNotNull.ErrorMessage
+<div class="alert-danger alert-dismissible" role="alert" style="max-width:300px">
+    @Model.ErrorMessage 
+</div>
+@EndIf
+<form method="post" action="/login" style="max-width:300px">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required data-validation-required-message="Please enter your email." name="email"/>
+    <input id="inputPassword" class="form-control" placeholder="Password" type="password" required data-validation-required-message="Please enter your password." name="password"/>
+    <div id="remember" class="checkbox">
+    <label>
+        <input type="checkbox" id="rememberCheckBox" class="checkbox" text="Remember me" name="rememberMe" />
+        Remember me
+    </label>
+    </div>
+    @IfNotNull.ReturnUrl
+        <input type="hidden" value="@Model.ReturnUrl" name="returnUrl" />
+    @EndIf
+    <input type="submit" Id="loginButton" class="btn btn-primary btn-block max-button-width" value="Log in" />
+</form>
+    <p>
+        <a href="/register">Register</a>
+        if you don't have a local account.
+    </p>
+@EndSection

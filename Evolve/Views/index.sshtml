@@ -1,0 +1,15 @@
+﻿@Master['master']
+
+@Section['Content']
+<div class="jumbotron">
+    <h1>Evolve</h1>
+    <p>Best recearch platform.</p>
+</div>
+
+@If.HasPosts
+    <h3>My subscriptions:</h3>
+    @Partial['Partial/PostList.sshtml', Model];
+@EndIf
+
+
+@EndSection

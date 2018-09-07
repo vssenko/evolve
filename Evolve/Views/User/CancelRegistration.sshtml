@@ -1,0 +1,8 @@
+﻿@Master['master']
+
+@Section['Content']
+<div class="alert alert-success" role="alert">
+    <strong>Well done, @Model.Username!</strong>
+    You have been successfully registred!
+</div>
+@EndSection

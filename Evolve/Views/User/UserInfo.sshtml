@@ -1,0 +1,66 @@
+﻿@Master['master']
+
+@Section['Content']
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      @IfNotNull.Image
+      <div class="user-image-wrapper"><img src="@Model.Image" class="user-image-pic" /></div>
+      @EndIf
+      @IfNull.Image
+      <img src="/Content/Images/user_blank_picture.png" style="height:256px;width:256px" />
+      @EndIf
+    <h2>
+      @Model.FirstName @Model.UserName @Model.LastName
+    </h2>
+      <div id="subscribe-wrapper" @IfNot.NeedSubscribe style="display:none" @EndIf>
+          @If.IsSubscribed
+          <h5>Subscribed.</h5><button class="btn btn-warning" onclick="unsubscribe()">Unsubscribe</button>
+          @EndIf
+          @IfNot.IsSubscribed
+          <button class="btn btn-success" onclick="subscribe()">Subscribe</button>
+          @EndIf
+      </div>
+    <h5>
+      Created on @Model.CreatedDate
+    </h5>
+    <h4>Summary: @Model.Summary</h4>
+    </hr>
+    <h3>Posts</h3>
+    </hr>
+      @Partial['Partial/PostList.sshtml', Model];
+    </div>
+</div>
+@EndSection
+
+@Section['script']
+    function subscribe()
+    {
+        $.ajax({
+            url: "/subscribe",
+            type: "POST",
+            data: {
+                UserId:@Model.UserId
+            },
+            cache: false,
+            success: function() {
+                $('#subscribe-wrapper').html('<h5>Subscribed.</h5><button class="btn btn-warning" onclick="unsubscribe()">Unsubscribe</button>');
+            }
+        });
+    }
+
+    function unsubscribe()
+    {
+        $.ajax({
+            url: "/unsubscribe",
+            type: "POST",
+            data: {
+                UserId:@Model.UserId
+            },
+            cache: false,
+            success: function() {
+                                $('#subscribe-wrapper').html('<button class="btn btn-success" onclick="subscribe()">Subscribe</button>');
+            }
+        });
+    }
+    
+@EndSection

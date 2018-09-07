@@ -1,0 +1,34 @@
+﻿@Master['master']
+
+@Section['Content']
+<h2>Register</h2>
+<div class="alert-danger alert-dismissible" style="max-width:300px">
+    @IfNotNull.ErrorMessage @Model.ErrorMessage @EndIf
+</div>
+<form id="registerForm" action="/register" method="post" style="max-width:300px" >
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="username" required />
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required />
+    <input id="inputPassword" class="form-control" placeholder="Password" type="password" name="password" required pattern=".{6,}"/>
+    <input id="inputRepeatPassword" class="form-control" placeholder="Repeat password" type="password" name="repeatedPassword" required pattern=".{6,}"/>
+    <input type="submit" id="registerButton" class="btn btn-primary btn-block max-button-width" value="Register" />
+</form>
+@EndSection
+
+@Section['script']
+$(function() {
+    $('#registerForm').submit(function( event ) {
+        if ( $('#inputPassword').val() != $('#inputRepeatPassword').val()  )
+        {
+            event.preventDefault();
+            $('#inputRepeatPassword').popover({
+                trigger: 'manual',
+                title: 'Error',
+                content:'Password must matches'
+                });
+            $('#inputRepeatPassword').popover('show')
+        }
+    });
+
+
+});
+@EndSection

@@ -1,0 +1,10 @@
+﻿@Master['master']
+
+@Section['Content']
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>My name is Vitaly Senko. And this is my Evolve.</p>
+            </div>
+        </div>
+
+@EndSection['Content']

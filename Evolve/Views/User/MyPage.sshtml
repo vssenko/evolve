@@ -1,0 +1,37 @@
+﻿@Master['master']
+
+@Section['Content']
+
+<h1>Manage</h1>
+@IfNotNull.Message
+<div class="alert alert-success" role="alert">
+    @Model.Message
+</div>
+@EndIf
+@IfNotNull.Error
+<div class="alert alert-danger" role="alert">
+    @Model.Error
+</div>
+@EndIf
+<form method="post" action="/mypage/changepass" style="max-width:300px">
+    <h4>Change password:</h4>
+    <input id="inputPassword" cssclass="form-control" placeholder="Password" type="password" name="oldPass" />
+    <input id="inputNewPassword" cssclass="form-control" placeholder="New password" type="password" name="newPass" />
+    <input id="inputRepeatNewPassword" cssclass="form-control" placeholder="Repeat new password" type="password" name="repeatNewPass" />
+    <button id="newPasswordButton" cssclass="btn btn-default btn-block max-button-width" type="submit">Change password</button>
+</form>
+<h4>Update user data</h4>
+<form method="post" action="/mypage/update" enctype="multipart/form-data">
+    <input id="inputFirstname" cssclass="form-control" placeholder="First name" type="text" name="firstName" value="@Model.User.UserDetails.Firstname" />
+    <input id="inputLastname" cssclass="form-control" placeholder="Last name" type="text" name="lastName" value="@Model.User.UserDetails.Lastname" />
+    @IfNotNull.User.UserDetails.ImagePath
+    <img src="@Model.User.UserDetails.ImagePath" style="height:128px;width:128px" />
+    @EndIf
+    @IfNull.User.UserDetails.ImagePath
+    <img src="/Content/Images/user_blank_picture.png" style="height:128px;width:128px" />
+    @EndIf
+    <input id="newImage" type="file" name="image" />
+    <textarea name="summary">@IfNotNull.User.UserDetails.Summary @Model.User.UserDetails.Summary @EndIf</textarea>
+    <button id="updateProfileButton" cssclass="btn btn-default btn-block max-button-width" type="submit">Update profile</button>
+</form>
+@EndSection['Content']

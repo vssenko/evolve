@@ -1,0 +1,13 @@
+﻿@Master['master']
+
+@Section['Content']
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+	<h3>Search results: </h3>
+    </hr>
+      @Partial['Partial/PostList.sshtml', Model];
+    </div>
+</div>
+
+@EndSection

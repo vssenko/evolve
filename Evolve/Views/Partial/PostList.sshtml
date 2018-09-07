@@ -1,0 +1,48 @@
+﻿<div class="row">
+    @Each.Posts
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div id="@Current.PostId" class="post-preview">
+
+            <a href="/post/@Current.PostId" >
+                <h2 class="post-title" style="display:inline">
+                    @Current.Title
+                </h2>
+                <!--<h3 class="post-subtitle">
+            Problems look mighty small from 150 miles up
+        </h3>-->
+            </a>
+            @If.IsOwner
+            <button type="button" style="display:inline" class="btn btn-sm btn-danger" aria-label="Close" onclick="deletepost(@Current.PostId)">Delete</button>
+            @EndIf
+                <p class="post-meta">Posted by <a href="/user/@Current.UserId">@Current.User.Username</a> on @Current.CreatedDate</p>
+        </div>
+        <hr>
+    @EndEach
+        <!-- Pager -->
+        @If.ShowNext
+        <ul class="pager">
+            <li class="next">
+                <a href="#">Older Posts &rarr;</a>
+            </li>
+        </ul>
+        @EndIf
+    </div>
+</div>
+
+<script>
+    function deletepost(postId)
+    {
+        $.ajax({
+            url: "/deletePost",
+            type: "POST",
+            data: {
+                PostId:postId
+            },
+            cache: false,
+            success: function() {
+                $('#'+postId).remove();
+                alert('Deleted');
+            }
+        });
+    }
+</script>

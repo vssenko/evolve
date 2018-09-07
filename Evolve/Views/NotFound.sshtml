@@ -1,0 +1,9 @@
+﻿@Master['master']
+
+@Section['Content']
+
+<div class="alert-danger">
+    Content not found :-(
+</div>
+
+@EndSection
